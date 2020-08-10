@@ -1,0 +1,24 @@
+{
+    "name": "shenheishe\/assist",
+    "description": "Laravel Developer Assistant",
+    "license": "MIT",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shenheishe\\Assist\\AssistServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "shenheishe",
+            "email": "shenheishe@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Shenheishe\\Assist\\": "src"
+        }
+    }
+}
