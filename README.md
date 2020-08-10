@@ -18,9 +18,9 @@ php artisan vendor:publish --provider="Shenheishe\Assist\AssistServiceProvider" 
 ## laravel 异常邮箱提醒
 
 - 配置laravel的邮件发送功能
-- 在 /app/Exceptions/Handler.php 中配置一行代码
 - 在 assist.php 中设置异常接收邮箱
 
+- 在 app/Exceptions/Handler.php 中配置一行代码
 ```php
 public function render($request, Exception $exception)
 {
