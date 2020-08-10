@@ -1,9 +1,9 @@
-<h1 align="center"> assist </h1>
+<h1 align="center"> Assist </h1>
 
 <p align="center"> Laravel Developer Assistant.</p>
 
 
-## Installing
+## 安装
 
 ```shell
 $ composer require shenheishe/assist -vvv
