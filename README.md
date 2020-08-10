@@ -9,19 +9,25 @@
 $ composer require shenheishe/assist -vvv
 ```
 
-## Usage
+## 运行下面的命令来发布资源
 
-TODO
+```shell
+php artisan vendor:publish --provider="Shenheishe\Assist\AssistServiceProvider" --force
+```
 
-## Contributing
+## laravel 异常邮箱提醒
 
-You can contribute in one of three ways:
+- 配置laravel的邮件发送功能
+- 在 /app/Exceptions/Handler.php 中配置一行代码
+- 在 assist.php 中设置异常接收邮箱
 
-1. File bug reports using the [issue tracker](https://github.com/shenheishe/assist/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/shenheishe/assist/issues).
-3. Contribute new features or update the wiki.
-
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
+```php
+public function render($request, Exception $exception)
+{
+   app(ErrorReport::class)->send($request,$exception);
+   return parent::render($request, $exception);
+}
+```
 
 ## License
 
