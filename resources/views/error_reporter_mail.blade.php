@@ -4,6 +4,7 @@
 
 ## {{$method}} <span>{{$url}}</span>
 
+@if(is_array($input) && count($input))
 <br>
 
 ## 请求参数:
@@ -14,6 +15,7 @@
 |  {{$key}}      | {{$val}}     |
 @endforeach
 @endcomponent
+@endif
 
 <br>
 
