@@ -3,11 +3,8 @@
 namespace Shenheishe\Assist\Src\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Exception;
 
 class ErrorMail extends Mailable
 {
@@ -16,7 +13,8 @@ class ErrorMail extends Mailable
     protected $url;
     protected $method;
     protected $input;
-    protected $header;
+    protected $userAgent;
+    protected $message;
     protected $content;
 
 
@@ -26,19 +24,21 @@ class ErrorMail extends Mailable
         $this->url = $arr[0];
         $this->method = $arr[1];
         $this->input = $arr[2];
-        $this->header = $arr[3];
-        $this->content = $arr[4];
+        $this->userAgent = $arr[3];
+        $this->message = $arr[4];
+        $this->content = $arr[5];
     }
 
 
     public function build()
     {
         return $this->subject('系统异常')
-            ->view('assist::error_reporter_mail', [
+            ->markdown('assist::error_reporter_mail', [
                 'url' => $this->url,
                 'method' => $this->method,
                 'input' => $this->input,
-                'header' => $this->header,
+                'user_agent' => $this->userAgent,
+                'message' => $this->message,
                 'content' => $this->content
             ]);
     }

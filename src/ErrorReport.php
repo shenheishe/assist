@@ -23,21 +23,22 @@ class ErrorReport
             return false;  //未配置邮件发送环境
         }
 
-//        return view('assist::error_reporter_mail',[
-//            'url'=>$request->url(),
-//            'method' => $request->method(),
-//            'input' => $request->input(),
-//            'header' => $request->header(),
-//            'content' => ''
-//        ]);
+//        return new ErrorMail(
+//            $request->url(),
+//            $request->method(),
+//            $request->input(),
+//            $request->userAgent(),
+//            '',
+//            $exception);
 
         $emails = config('assist.error_receiver_emails');
-        if (!count($emails)) return;
+        if (!count($emails)) return false;
         Mail::to($emails)->send(new ErrorMail(
             $request->url(),
             $request->method(),
             $request->input(),
-            $request->header(),
+            $request->userAgent(),
+            $exception->getMessage(),
             $exception
         ));
     }

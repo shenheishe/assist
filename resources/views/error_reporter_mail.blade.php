@@ -1,69 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<style>
-    * {
-        font-size: 13px;
-    }
+@component('mail::message')
 
-    body {
-        padding: 10px;
-    }
+<h3 style="background-color: #990000;color: white; padding: 8px;word-break: break-all">{{$message?:"无"}}</h3>
 
-    table {
-        width: 100%;
-    }
+## {{$method}} <span>{{$url}}</span>
 
-    table th {
-        text-align: left
-    }
+<br>
 
-    table th, table td {
-        padding: 5px;
-    }
+## 请求参数:
+@component('mail::table')
+| 参数        | 值         |
+| :--------- | :--------- |
+@foreach($input as $key=>$val)
+|  {{$key}}      | {{$val}}     |
+@endforeach
+@endcomponent
 
-    table tr:nth-of-type(odd) {
-        background-color: #f9f9f9
-    }
+<br>
 
-    h4 {
-        margin-top: 10px;
-        margin-bottom: 5px;
-        font-size: 16px
-    }
-</style>
-<body>
-<div class="container">
-    <h4 class="h4">请求地址<br><small>{!! $url !!}</small></h4>
-    <h4 class="h4">请求方式<br><small>{!! $method !!}</small></h4>
-    <div class="input">
-        <h4 class="h4">请求参数</h4>
-        <table>
-            @if(is_array($input))
-                @foreach($input as $key=>$val)
-                    <tr>
-                        <th>{{$key}}:</th>
-                        <td style="word-break: break-all">{{$val}}</td>
-                    </tr>
-                @endforeach
-            @endif
-        </table>
-    </div>
-    <div class="header">
-        <h4>请求头信息</h4>
-        <table>
-            @foreach($header as $key=>$val)
-                <tr>
-                    <th>{{$key}}:</th>
-                    <td style="word-break: break-all">{{$val[0]}}</td>
-                </tr>
-            @endforeach
-        </table>
-    </div>
-    <div class="content">
-        <h4>异常内容</h4>
-        <p style="word-break: break-all">{!! $content !!}</p>
-    </div>
-</div>
-</body>
-</html>
+## UserAgent:
+{{$user_agent}}
+
+<br>
+
+## 错误详情:
+<div style="word-break: break-all">{{$content}}</div>
+
+@endcomponent
