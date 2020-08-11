@@ -10,11 +10,6 @@ class AssistServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
-    public function register()
-    {
-        parent::register();
-    }
-
     public function boot()
     {
         //发布配置文件
