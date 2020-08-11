@@ -25,6 +25,6 @@
 <br>
 
 ## 错误详情:
-<div style="word-break: break-all">{{$content}}</div>
+<div style="word-break: break-all">{{str_replace("\n",'<br>',$content)}}</div>
 
 @endcomponent

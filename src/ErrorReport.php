@@ -33,7 +33,7 @@ class ErrorReport
 
         $emails = config('assist.error_receiver_emails');
         if (!count($emails)) return false;
-        Mail::to($emails)->send(new ErrorMail(
+        return Mail::to($emails)->send(new ErrorMail(
             $request->url(),
             $request->method(),
             $request->input(),
