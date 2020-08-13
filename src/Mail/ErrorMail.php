@@ -16,6 +16,8 @@ class ErrorMail extends Mailable
     protected $userAgent;
     protected $message;
     protected $content;
+    protected $code;
+    protected $ip;
 
 
     public function __construct()
@@ -27,6 +29,8 @@ class ErrorMail extends Mailable
         $this->userAgent = $arr[3];
         $this->message = $arr[4];
         $this->content = $arr[5];
+        $this->code = $arr[6];
+        $this->ip = $arr[7];
     }
 
 
@@ -39,7 +43,9 @@ class ErrorMail extends Mailable
                 'input' => $this->input,
                 'user_agent' => $this->userAgent,
                 'message' => $this->message,
-                'content' => $this->content
+                'content' => $this->content,
+                'code' => $this->code,
+                'ip' => $this->ip,
             ]);
     }
 }

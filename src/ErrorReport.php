@@ -39,7 +39,9 @@ class ErrorReport
             $request->input(),
             $request->userAgent(),
             $exception->getMessage(),
-            $exception
+            $exception,
+            $exception->getCode(),
+            $request->getClientIp()
         ));
     }
 }
