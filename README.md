@@ -4,9 +4,20 @@
 
 
 ## 安装
+#### 正常安装
+```shell script
+$ composer require shenheishe/assist
+```
 
-```shell
+#### 安装最新版本
+
+```shell script
 $ composer require shenheishe/assist -vvv
+```
+
+#### 更新到开发版
+```shell script
+$ composer require shenheishe/assist:dev-master -vvv
 ```
 
 ## 运行下面的命令来发布资源
