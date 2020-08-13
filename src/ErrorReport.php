@@ -1,6 +1,6 @@
 <?php
 /**
- * laravel错误日志通知
+ * laravel错误日志通知.
  */
 
 namespace Shenheishe\Assist;
@@ -32,7 +32,9 @@ class ErrorReport
 //            $exception);
 
         $emails = config('assist.error_receiver_emails');
-        if (!count($emails)) return false;
+        if (!count($emails)){
+            return false;
+        }
         return Mail::to($emails)->send(new ErrorMail(
             $request->url(),
             $request->method(),

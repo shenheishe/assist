@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Shenheishe\Assist;
-
 
 use Illuminate\Support\ServiceProvider;
 
