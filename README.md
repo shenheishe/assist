@@ -42,13 +42,14 @@ public function render($request, Exception $exception)
 
 ## 通过数据表生成指定字段数据格式
 
-```php
+```shell script
 /*
 * str id,name
 * array ['id'=>'','name'=>'']
 * comment ['id'=>'ID'，'name'=>'姓名']
 */
-php artisan dk:col --type=str
+
+$ php artisan dk:col --type=str
 ```
 
 ## License
