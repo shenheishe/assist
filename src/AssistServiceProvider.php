@@ -3,14 +3,20 @@
 namespace Shenheishe\Assist;
 
 use Illuminate\Support\ServiceProvider;
+use Shenheishe\Assist\Src\Console\TableToColumnCommand;
 
 class AssistServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 
+    protected $commands = [
+        TableToColumnCommand::class,
+    ];
+
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/assist.php', 'assist');
+        $this->commands($this->commands);
     }
 
     public function boot()

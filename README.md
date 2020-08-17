@@ -40,6 +40,17 @@ public function render($request, Exception $exception)
 }
 ```
 
+## 通过数据表生成指定字段数据格式
+
+```php
+/*
+* str id,name
+* array ['id'=>'','name'=>'']
+* comment ['id'=>'ID'，'name'=>'姓名']
+*/
+php artisan dk:col --type=str
+```
+
 ## License
 
 MIT
