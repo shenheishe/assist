@@ -44,12 +44,13 @@ public function render($request, Exception $exception)
 
 ```shell script
 /*
-* str id,name
+* users 为数据表名
+* type类型 str id,name
 * array ['id'=>'','name'=>'']
 * comment ['id'=>'ID'，'name'=>'姓名']
 */
 
-$ php artisan dk:col --type=str
+$ php artisan dk:col users --type=str
 ```
 
 ## License
