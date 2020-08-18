@@ -47,10 +47,20 @@ public function render($request, Exception $exception)
 * users 为数据表名
 * type类型 str id,name
 * array ['id'=>'','name'=>'']
-* comment ['id'=>'ID'，'name'=>'姓名']
+* comment ['id'=>'ID','name'=>'姓名']
 */
 
 $ php artisan dk:col users --type=str
+```
+
+## 生成数据字典 生成后的字典目录 resouces/lang/zh-CN/dictionary
+```shell script
+$ php artisan dk:locale
+```
+
+## 数据库备份命令
+```shell script
+$ php artisan dk:seed
 ```
 
 ## License

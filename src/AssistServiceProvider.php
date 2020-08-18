@@ -4,6 +4,8 @@ namespace Shenheishe\Assist;
 
 use Illuminate\Support\ServiceProvider;
 use Shenheishe\Assist\Src\Console\TableToColumnCommand;
+use Shenheishe\Assist\Src\Console\TableToLocaleFileCommand;
+use Shenheishe\Assist\Src\Console\TableToSeedCommand;
 
 class AssistServiceProvider extends ServiceProvider
 {
@@ -11,6 +13,8 @@ class AssistServiceProvider extends ServiceProvider
 
     protected $commands = [
         TableToColumnCommand::class,
+        TableToLocaleFileCommand::class,
+        TableToSeedCommand::class,
     ];
 
     public function register()

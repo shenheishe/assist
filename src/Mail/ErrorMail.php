@@ -22,15 +22,15 @@ class ErrorMail extends Mailable
 
     public function __construct()
     {
-        $arr             = func_get_args();
-        $this->url       = $arr[0];
-        $this->method    = $arr[1];
-        $this->input     = $arr[2];
+        $arr = func_get_args();
+        $this->url = $arr[0];
+        $this->method = $arr[1];
+        $this->input = $arr[2];
         $this->userAgent = $arr[3];
-        $this->message   = $arr[4];
-        $this->content   = $arr[5];
-        $this->code      = $arr[6];
-        $this->ip        = $arr[7];
+        $this->message = $arr[4];
+        $this->content = $arr[5];
+        $this->code = $arr[6];
+        $this->ip = $arr[7];
     }
 
 

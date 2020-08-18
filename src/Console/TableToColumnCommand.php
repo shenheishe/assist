@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class TableToColumnCommand extends Command
 {
-    protected $signature = 'dk:column {table} {--type=}';
+    protected $signature = 'dk:col {table} {--type=}';
 
     protected $description = '通过数据表生成指定字段样式';
 
@@ -19,7 +19,7 @@ class TableToColumnCommand extends Command
     {
         $table = $this->argument('table');
         $type = $this->options('type')['type'];
-        
+
         if (!\Schema::hasTable($table)) {
             $this->error("{$table} 表名不存在");
             return;

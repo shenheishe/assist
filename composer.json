@@ -15,7 +15,9 @@
             "email": "shenheishe@qq.com"
         }
     ],
-    "require": {},
+    "require": {
+        "orangehill/iseed": "^2.6"
+    },
     "autoload": {
         "psr-4": {
             "Shenheishe\\Assist\\": "src"
