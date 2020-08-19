@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the shenheishe/assist.
+ *
+ * (c) shenheishe <shenheishe@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 namespace Shenheishe\Assist\Src\Console;
 
 use Illuminate\Console\Command;
@@ -22,6 +30,7 @@ class TableToColumnCommand extends Command
 
         if (!\Schema::hasTable($table)) {
             $this->error("{$table} 表名不存在");
+
             return;
         }
         $columns = \DB::select('SELECT column_name as col,column_comment as comment FROM information_schema.COLUMNS WHERE table_name = ? AND table_schema = ?', [$table, env('DB_DATABASE')]);

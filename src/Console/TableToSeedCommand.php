@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the shenheishe/assist.
+ *
+ * (c) shenheishe <shenheishe@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 namespace Shenheishe\Assist\Src\Console;
 
 use Illuminate\Console\Command;
@@ -18,14 +26,14 @@ class TableToSeedCommand extends Command
     public function handle()
     {
         if ($this->confirm('是否要开始备份所有数据表?')) {
-            $tables = \DB::select("SELECT TABLE_NAME FROM information_schema.tables where table_schema=?", [env('DB_DATABASE')]);
+            $tables = \DB::select('SELECT TABLE_NAME FROM information_schema.tables where table_schema=?', [env('DB_DATABASE')]);
             $tables = collect($tables)->pluck('TABLE_NAME')->filter(function ($table) {
-                return $table != 'migrations'; //排除migrations数据表
+                return 'migrations' != $table; //排除migrations数据表
             })->join(',');
 
             $this->call('iseed', [
-                'tables'  => $tables,
-                '--force' => 'default'
+                'tables' => $tables,
+                '--force' => 'default',
             ]);
         }
     }

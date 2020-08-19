@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the shenheishe/assist.
+ *
+ * (c) shenheishe <shenheishe@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 namespace Shenheishe\Assist\Src\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -8,7 +16,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ErrorMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     protected $url;
     protected $method;
@@ -18,7 +27,6 @@ class ErrorMail extends Mailable
     protected $content;
     protected $code;
     protected $ip;
-
 
     public function __construct()
     {
@@ -33,19 +41,18 @@ class ErrorMail extends Mailable
         $this->ip = $arr[7];
     }
 
-
     public function build()
     {
         return $this->subject('系统异常')
             ->markdown('assist::error_reporter_mail', [
-                'url'        => $this->url,
-                'method'     => $this->method,
-                'input'      => $this->input,
+                'url' => $this->url,
+                'method' => $this->method,
+                'input' => $this->input,
                 'user_agent' => $this->userAgent,
-                'message'    => $this->message,
-                'content'    => $this->content,
-                'code'       => $this->code,
-                'ip'         => $this->ip,
+                'message' => $this->message,
+                'content' => $this->content,
+                'code' => $this->code,
+                'ip' => $this->ip,
             ]);
     }
 }

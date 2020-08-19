@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the shenheishe/assist.
+ *
+ * (c) shenheishe <shenheishe@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 namespace Shenheishe\Assist\Src\Console;
 
 use Illuminate\Console\Command;
@@ -32,19 +40,17 @@ class TableToLocaleFileCommand extends Command
         }
     }
 
-
     /**
-     * 创建目录
+     * 创建目录.
      */
     protected function createDir()
     {
         $path = resource_path('lang/zh-CN/dictionary');
-        \File::isDirectory($path) or \File::makeDirectory($path,0755,true,true);
+        \File::isDirectory($path) or \File::makeDirectory($path, 0755, true, true);
     }
 
     /**
-     * 获取数据库中所有表及表字段信息
-     * @return array
+     * 获取数据库中所有表及表字段信息.
      */
     protected function tableColumns(): array
     {
@@ -53,12 +59,13 @@ class TableToLocaleFileCommand extends Command
         foreach ($tables as $table) {
             $arr[$table->table_name] = $this->columns($table->table_name);
         }
+
         return $arr;
     }
 
     /**
      * 获取指定表字段信息.
-     * @param string $table
+     *
      * @return mixed
      */
     protected function columns(string $table)
