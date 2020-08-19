@@ -17,8 +17,6 @@ use Shenheishe\Assist\Src\Console\TableToSeedCommand;
 
 class AssistServiceProvider extends ServiceProvider
 {
-    protected $defer = true;
-
     protected $commands = [
         TableToColumnCommand::class,
         TableToLocaleFileCommand::class,
@@ -27,17 +25,17 @@ class AssistServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/assist.php', 'assist');
+        $this->mergeConfigFrom(__DIR__.'/../config/assist.php', 'assist');
         $this->commands($this->commands);
     }
 
     public function boot()
     {
         //发布配置文件
-        $this->publishes([__DIR__ . '/../config/assist.php' => config_path('assist.php')]);
-        $this->publishes([__DIR__ . '/../resources/assets' => public_path('vendor/assist')], 'assist-assets');
+        $this->publishes([__DIR__.'/../config/assist.php' => config_path('assist.php')]);
+        $this->publishes([__DIR__.'/../resources/assets' => public_path('vendor/assist')], 'assist-assets');
         //扩展包视图
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'assist');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'assist');
     }
 
     public function provides()

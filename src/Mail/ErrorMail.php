@@ -26,7 +26,8 @@ class ErrorMail extends Mailable
     protected $message;
     protected $content;
     protected $code;
-    protected $user_ip;
+    protected $userIp;
+    protected $mailer;
 
     public function __construct()
     {
@@ -38,7 +39,7 @@ class ErrorMail extends Mailable
         $this->message = $arr[4];
         $this->content = $arr[5];
         $this->code = $arr[6];
-        $this->user_ip = $arr[7];
+        $this->userIp = $arr[7];
     }
 
     public function build()
@@ -52,7 +53,12 @@ class ErrorMail extends Mailable
                 'message'    => $this->message,
                 'content'    => $this->content,
                 'code'       => $this->code,
-                'ip'         => $this->user_ip,
+                'ip'         => $this->userIp,
             ]);
+    }
+
+    public function mailer($mailer)
+    {
+        $this->mailer = $mailer;
     }
 }

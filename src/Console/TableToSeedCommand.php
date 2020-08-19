@@ -27,12 +27,11 @@ class TableToSeedCommand extends Command
     {
         if ($this->confirm('是否要开始备份所有数据表?')) {
             $tables = \DB::select('SELECT TABLE_NAME FROM information_schema.tables where table_schema=?', [env('DB_DATABASE')]);
-            $tables = collect($tables)->pluck('TABLE_NAME')->filter(function ($table) {
+            $tableStr = collect($tables)->pluck('TABLE_NAME')->filter(function ($table) {
                 return 'migrations' != $table; //排除migrations数据表
             })->join(',');
-
             $this->call('iseed', [
-                'tables' => $tables,
+                'tables'  => $tableStr,
                 '--force' => 'default',
             ]);
         }

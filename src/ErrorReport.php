@@ -18,8 +18,6 @@ use Shenheishe\Assist\Src\Mail\ErrorMail;
 
 class ErrorReport
 {
-    protected $emails = [];
-
     public function send(Request $request, Exception $exception)
     {
         $bool = env('MAIL_DRIVER')
@@ -30,8 +28,7 @@ class ErrorReport
 
         if (!$bool) {
             Log::debug('系统未配置邮件发送环境，无法发送系统异常信息');
-
-            return false;  //未配置邮件发送环境
+            return false;
         }
 
         $emails = config('assist.error_receiver_emails');
