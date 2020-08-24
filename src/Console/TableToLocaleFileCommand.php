@@ -11,6 +11,7 @@
 namespace Shenheishe\Assist\Src\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class TableToLocaleFileCommand extends Command
 {
@@ -28,6 +29,9 @@ class TableToLocaleFileCommand extends Command
         //创建字典目录
         $this->createDir();
         $tableColumns = $this->tableColumns();
+
+        $this->info(json_encode($tableColumns));
+
         foreach ($tableColumns as $table => $columns) {
             $contents = "<?php \n";
             $contents .= "return [ \n";
@@ -36,7 +40,14 @@ class TableToLocaleFileCommand extends Command
             }
             $contents .= '];';
             //生成字典文件
-            $this->laravel['files']->put(resource_path("lang/zh-CN/dictionary/{$table}.php"), $contents);
+            $table = Str::singular($table);
+            $result = $this->laravel['files']->put(resource_path("lang/zh-CN/dictionary/{$table}.php"), $contents);
+            if ($result) {
+                $this->info("写入 {$table}.php 文件成功！");
+            } else {
+                $this->error("写入 {$table}.php 文件失败！");
+            }
+
         }
     }
 
@@ -54,12 +65,12 @@ class TableToLocaleFileCommand extends Command
      */
     protected function tableColumns(): array
     {
-        $tables = \DB::select('select table_name from information_schema.tables where table_schema=? and table_type="base table"', [env('DB_DATABASE')]);
+        $tables = \DB::select('select table_name from information_schema.tables where table_schema=?', [env('DB_DATABASE')]);
+        $names = collect($tables)->pluck('TABLE_NAME');
         $arr = [];
-        foreach ($tables as $table) {
-            $arr[$table->table_name] = $this->columns($table->table_name);
+        foreach ($names as $name) {
+            $arr[$name] = $this->columns($name);
         }
-
         return $arr;
     }
 
