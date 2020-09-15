@@ -65,8 +65,8 @@ class TableToLocaleFileCommand extends Command
      */
     protected function tableColumns(): array
     {
-        $tables = \DB::select('select table_name from information_schema.tables where table_schema=?', [env('DB_DATABASE')]);
-        $names = collect($tables)->pluck('TABLE_NAME');
+        $tables = \DB::select('select table_name as name from information_schema.tables where table_schema=?', [env('DB_DATABASE')]);
+        $names = collect($tables)->pluck('name');
         $arr = [];
         foreach ($names as $name) {
             $arr[$name] = $this->columns($name);
