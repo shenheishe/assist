@@ -30,8 +30,6 @@ class TableToLocaleFileCommand extends Command
         $this->createDir();
         $tableColumns = $this->tableColumns();
 
-        $this->info(json_encode($tableColumns));
-
         foreach ($tableColumns as $table => $columns) {
             $contents = "<?php \n";
             $contents .= "return [ \n";
