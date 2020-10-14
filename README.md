@@ -48,6 +48,7 @@ public function render($request, Exception $exception)
 * type类型 str id,name
 * array ['id'=>'','name'=>'']
 * comment ['id'=>'ID','name'=>'姓名']
+* resource ['id'=>'$this->id']
 */
 
 $ php artisan dk:col users --type=str
