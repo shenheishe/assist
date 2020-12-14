@@ -68,12 +68,15 @@ class TableToLocaleFileCommand extends Command
         foreach ($names as $name) {
             $arr[$name] = $this->columns($name);
         }
+
         return $arr;
     }
 
     /**
      * 获取指定表字段信息.
+     *
      * @param string $table
+     *
      * @return mixed
      */
     protected function columns(string $table)
