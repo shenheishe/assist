@@ -47,7 +47,7 @@ class TableToColumnCommand extends Command
                     $str .= "'{$column->col}'=>'{$column->comment}',\n";
                     break;
                 case 'resource':
-                    $str .= "'{$column->col}'=> \$this->{$column->col},\n";
+                    $str .= "'{$column->col}'=>'\$this->{$column->col}',\n";
                     break;
                 default:
                     $str .= "'{$column->col}',";
