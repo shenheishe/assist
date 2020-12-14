@@ -45,7 +45,6 @@ class TableToLocaleFileCommand extends Command
             } else {
                 $this->error("写入 {$table}.php 文件失败！");
             }
-
         }
     }
 
@@ -74,7 +73,7 @@ class TableToLocaleFileCommand extends Command
 
     /**
      * 获取指定表字段信息.
-     *
+     * @param string $table
      * @return mixed
      */
     protected function columns(string $table)
